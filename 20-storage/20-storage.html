@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Form</title>
+  </head>
+  <body>
+    <form id="userform" style="display: flex; flex-direction: column">
+      <div
+        style="
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+        "
+      >
+        <h1>Local Storage</h1>
+
+        <label>Name</label>
+        <input type="text" id="name" placeholder="Name" />
+
+        <label>Email</label>
+        <input type="text" id="email" placeholder="Email" />
+
+        <label>Phone Number</label>
+        <input type="number" id="number" placeholder="Phone Number" />
+
+        <button type="submit">Submit</button>
+      </div>
+    </form>
+
+    <div id="submittedInfo">
+      <h1>Data submitted</h1>
+      <p id="submittedName"></p>
+      <p id="submittedEmail"></p>
+      <p id="submittedNumber"></p>
+    </div>
+    <script src="20-localStorage.js"></script>
+  </body>
+</html>
