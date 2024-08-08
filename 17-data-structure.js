@@ -6,6 +6,7 @@ class createNode {
     this.next = next;
   }
 }
+
 //Task-2
 
 class createLinkedLinst {
