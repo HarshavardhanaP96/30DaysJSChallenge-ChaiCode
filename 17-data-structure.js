@@ -33,7 +33,7 @@ class createLinkedLinst {
       return null;
     }
 
-    let deletedHead = tis.head;
+    let deletedHead = this.head;
 
     if (this.head.next) {
       this.head = this.head.next;
@@ -186,8 +186,78 @@ class createLinkedLinst {
     this.head = prev;
   }
 }
-//Activity-5
-//Task-9
+
+//Activity-2
+//Task-3
+class stackNode {
+  constructor(value, next = null) {
+    this.value = value;
+    this.next = next;
+  }
+}
+
+class stack {
+  constructor() {
+    this.head = null;
+    //Tail is not necessary
+    this.tail = null;
+  }
+
+  isEmpty() {
+    return !this.head;
+  }
+
+  push(value) {
+    const newNode = new stackNode(value);
+    if (!this.head) {
+      this.head = newNode;
+    } else {
+      newNode.next = this.head;
+      this.head = newNode;
+    }
+    return this.head;
+  }
+
+  peek() {
+    if (this.isEmpty()) {
+      return null;
+    }
+
+    return this.head.value;
+  }
+
+  pop() {
+    if (this.isEmpty()) {
+      return null;
+    }
+    const deletedNode = this.head;
+    this.head = this.head.next;
+
+    return deletedNode.value;
+  }
+}
+
+//Task-4
+
+const str = "JaiShriRam";
+
+function reverse(str) {
+  const n = str.length;
+  const s1 = new stack();
+
+  for (let i = 0; i < n; i++) {
+    s1.push(str.charAt(i));
+  }
+
+  let reverseStr = "";
+
+  while (!s1.isEmpty()) {
+    reverseStr += s1.pop();
+  }
+  return reverseStr;
+}
+
+console.log(reverse(str));
 
 //Activity-5
 //Task-9
