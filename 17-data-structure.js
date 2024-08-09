@@ -259,8 +259,94 @@ function reverse(str) {
 
 console.log(reverse(str));
 
-//Activity-5
-//Task-9
+//Activity-3
+//Task-5
+
+class queueNode {
+  constructor(value, next = null) {
+    this.value = value;
+    this.next = next;
+  }
+}
+
+class queue {
+  constructor() {
+    this.head = null;
+    this.tail = null;
+  }
+
+  enqueue(value) {
+    const newNode = new queueNode(value);
+    if (!this.head) {
+      this.head = newNode;
+      this.tail = newNode;
+    } else {
+      this.tail.next = newNode;
+      this.tail = newNode;
+    }
+  }
+
+  dequeue() {
+    if (!this.head) {
+      return null;
+    }
+    const deletedNode = this.head;
+
+    if (!this.head.next) {
+      this.head = null;
+      this.tail = null;
+      return deletedNode;
+    }
+
+    this.head = this.head.next;
+
+    return deletedNode.value;
+  }
+
+  front() {
+    if (!this.head) {
+      return null;
+    }
+    return this.head.value;
+  }
+}
+
+//Task-6
+class printJob {
+  constructor(id, documentName) {
+    this.id = id;
+    this.documentName = documentName;
+  }
+}
+
+class printQueue {
+  constructor() {
+    this.queue = new queue();
+    this.jobId = 1;
+  }
+
+  addJob(doc) {
+    const job = new printJob(this.jobId++, doc);
+    this.queue.enqueue(job);
+    console.log(`${job.id}:${job.documentName} added succesfully`);
+  }
+
+  processJob() {
+    if (!this.queue.head) {
+      console.log("No Items to process");
+    } else {
+      const job = this.queue.dequeue();
+      console.log(`${job.id}.${job.documentName} Processed succesfully`);
+    }
+  }
+}
+
+const print = new printQueue();
+print.addJob("Harhsa.pdf");
+print.addJob("Harhsa.png");
+print.processJob();
+print.processJob();
+print.processJob();
 
 //Activity-5
 //Task-9
