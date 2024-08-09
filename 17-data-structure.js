@@ -336,7 +336,7 @@ class printQueue {
       console.log("No Items to process");
     } else {
       const job = this.queue.dequeue();
-      console.log(`${job.id}.${job.documentName} Processed succesfully`);
+      console.log(`${job.id}:${job.documentName} Processed succesfully`);
     }
   }
 }
@@ -348,8 +348,96 @@ print.processJob();
 print.processJob();
 print.processJob();
 
-//Activity-5
-//Task-9
+//Activity-4
+//Task-7
+class treeNode {
+  constructor(value, right = null, left = null) {
+    this.value = value;
+    this.left = left;
+    this.right = right;
+  }
+}
+
+class binaryTree {
+  constructor() {
+    this.root = null;
+  }
+
+  addnode(value) {
+    const newNode = new treeNode(value);
+    if (!this.root) {
+      this.root = newNode;
+      return;
+    }
+    const q = [];
+    q.push(this.root);
+
+    while (q.length !== 0) {
+      const node = q.shift();
+
+      if (!node.left) {
+        node.left = newNode;
+        break;
+      } else {
+        q.push(node.left);
+      }
+
+      if (!node.right) {
+        node.right = newNode;
+        break;
+      } else {
+        q.push(node.right);
+      }
+    }
+  }
+
+  inorder(node = this.root) {
+    if (node) {
+      this.inorder(node.left);
+      console.log(node.value);
+      this.inorder(node.right);
+    }
+  }
+
+  preorder(node = this.root) {
+    if (node) {
+      console.log(node.value);
+
+      this.preorder(node.left);
+      this.preorder(node.right);
+    }
+  }
+
+  postorder(node = this.root) {
+    if (node) {
+      this.postorder(node.left);
+      this.postorder(node.right);
+      console.log(node.value);
+    }
+  }
+}
+
+const tree = new binaryTree();
+tree.addnode(1);
+tree.addnode(2);
+tree.addnode(3);
+tree.addnode(4);
+tree.addnode(5);
+tree.addnode(6);
+tree.addnode(7);
+tree.addnode(8);
+
+console.log("inorder");
+
+tree.inorder();
+
+console.log("preorder");
+
+tree.preorder();
+
+console.log("postorder");
+
+tree.postorder();
 
 //Activity-5
 //Task-9
