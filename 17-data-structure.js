@@ -358,6 +358,7 @@ class treeNode {
   }
 }
 
+//Task-8
 class binaryTree {
   constructor() {
     this.root = null;
@@ -441,3 +442,57 @@ tree.postorder();
 
 //Activity-5
 //Task-9
+class Graph {
+  constructor() {
+    this.adjecencyList = {};
+  }
+
+  addVertex(vertex) {
+    if (!this.adjecencyList[vertex]) {
+      this.adjecencyList[vertex] = [];
+    }
+  }
+
+  addEdge(vertex1, vertex2) {
+    if (this.adjecencyList[vertex1] && this.adjecencyList[vertex2]) {
+      this.adjecencyList[vertex1].push(vertex2);
+      this.adjecencyList[vertex2].push(vertex1);
+    }
+  }
+
+  bfs(start) {
+    const visited = {};
+    const result = [];
+    const queue = [start];
+
+    visited[start] = true;
+
+    while (queue.length > 0) {
+      const currentVertex = queue.shift();
+      result.push(currentVertex);
+
+      for (let adjecents of this.adjecencyList[currentVertex]) {
+        if (!visited[adjecents]) {
+          visited[adjecents] = true;
+          queue.push(adjecents);
+        }
+      }
+    }
+    return result;
+  }
+}
+
+const graph = new Graph();
+graph.addVertex("A");
+graph.addVertex("B");
+graph.addVertex("C");
+graph.addVertex("D");
+graph.addVertex("E");
+
+graph.addEdge("A", "B");
+graph.addEdge("A", "C");
+graph.addEdge("B", "D");
+graph.addEdge("C", "E");
+graph.addEdge("D", "E");
+
+console.log("BFS starting from vertex A:", graph.bfs("A"));
