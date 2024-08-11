@@ -480,6 +480,30 @@ class Graph {
     }
     return result;
   }
+
+  bfsShortestPath(start, end) {
+    let queue = [[start]];
+    let visited = new Set();
+    visited.add(start);
+
+    while (queue.length) {
+      let path = queue.shift();
+      let vertex = path[path.length - 1];
+
+      if (vertex === end) {
+        return path;
+      }
+
+      for (let neighbour of this.adjecencyList[vertex]) {
+        if (!visited.has(neighbour)) {
+          visited.add(neighbour);
+          let newPath = [...path, neighbour];
+          queue.push(newPath);
+        }
+      }
+    }
+    return null;
+  }
 }
 
 const graph = new Graph();
@@ -496,3 +520,7 @@ graph.addEdge("C", "E");
 graph.addEdge("D", "E");
 
 console.log("BFS starting from vertex A:", graph.bfs("A"));
+console.log(
+  "Shortest Path starting from vertex A to vertex E:",
+  graph.bfsShortestPath("A", "E")
+);

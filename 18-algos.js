@@ -72,6 +72,23 @@ console.log(binarySearch(arr1, 321));
 
 //Activity-3
 //Task-6
+let alpha = new Array(26).fill(0);
+
+let s =
+  "lndskf nlsjdnldja dalnalsdjnadlj slandaldjad dsalnldjnadluasdalindawldin lksnadlndaljdnlasaldjn";
+
+for (let i = 0; i < s.length; i++) {
+  const element = s.charAt(i).toLowerCase();
+  alpha[element.charCodeAt(0) - 97]++;
+}
+
+console.log("counts are as below");
+
+for (let i = 0; i < alpha.length; i++) {
+  console.log(String.fromCharCode(i + 97), " : ", alpha[i]);
+}
+
+console.log("end of count");
 
 //task-7
 
