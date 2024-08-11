@@ -112,3 +112,81 @@ console.log(countOccurence(arr, 99, 0, 0));
 
 //Activity-5
 //Task-9
+
+class treeNode {
+  constructor(value, left = null, right = null) {
+    this.value = value;
+    this.left = left;
+    this.right = right;
+  }
+}
+
+class Tree {
+  constructor(root = null) {
+    this.root = root;
+  }
+
+  insert(value) {
+    const newNode = new treeNode(value);
+
+    if (!this.root) {
+      this.root = newNode;
+      return;
+    }
+
+    let q = [this.root];
+    while (q.length !== 0) {
+      let node = q.shift();
+
+      if (!node.left) {
+        node.left = newNode;
+        break;
+      } else {
+        q.push(node.left);
+      }
+
+      if (!node.right) {
+        node.right = newNode;
+        break;
+      } else {
+        q.push(node.right);
+      }
+    }
+  }
+
+  inorder(node = this.root) {
+    if (node) {
+      this.inorder(node.left);
+      console.log(node.value);
+      this.inorder(node.right);
+    }
+  }
+
+  //Task-10
+
+  depth(node = this.root) {
+    if (!node) {
+      return 0;
+    }
+    let MaxLDepth = this.depth(node.left);
+    let MaxRDepth = this.depth(node.right);
+
+    return Math.max(MaxLDepth, MaxRDepth) + 1;
+  }
+}
+
+const tree = new Tree();
+tree.insert(1);
+tree.insert(2);
+tree.insert(3);
+tree.insert(4);
+tree.insert(5);
+tree.insert(6);
+tree.insert(7);
+tree.insert(8);
+
+console.log("inorder");
+
+tree.inorder();
+
+console.log(`max tree depth: ${tree.depth()}`);
