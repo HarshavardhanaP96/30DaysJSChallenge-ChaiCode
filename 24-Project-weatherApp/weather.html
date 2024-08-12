@@ -6,7 +6,8 @@
     <title>Weather Report</title>
     <style>
         .forcast-item{
-            padding: 1rem 2rem;
+            min-width: fit-content;
+            padding: 0.5rem 0.7rem;
             background-color: burlywood;
             margin: 0 10px;
         }
@@ -57,8 +58,7 @@
 
   <script>
     async function fetchData() {
-      const url =
-        "https://api.openweathermap.org/data/2.5/forecast?lat=12.971599&lon=77.594566&appid=6d53c4c6c53ccfe9f2c057bede7deaeb";
+      const url =process.env.API_URL;
 
       try {
         const res = await fetch(url);
@@ -152,6 +152,4 @@
 </html>
 
 <!-- cityName fetch is pending -->
-<!-- 17bddfea3395ea6a61d8148c7d029710 -->
 
-<!-- https://api.openweathermap.org/data/2.5/forecast?lat=12.971599&lon=77.594566&appid=6d53c4c6c53ccfe9f2c057bede7deaeb -->
