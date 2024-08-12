@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weather Report</title>
+    <style>
+        .forcast-item{
+            padding: 1rem 2rem;
+            background-color: burlywood;
+            margin: 0 10px;
+        }
+        .humidity{
+            font-size: 1.1rem; padding-top: 2rem;
+        }
+        .windspeed{
+            font-size: 1.1rem; padding: 2rem;
+        }
+    </style>
+  </head>
+  <body>
+    <div
+      style="
+        position: -webkit-sticky;
+        position: sticky;
+        padding: 20px 30px;
+        background-color: blueviolet;
+        display: flex;
+        justify-content: space-between;
+      "
+    >
+      <navbar>Weather data</navbar>
+
+      <input
+        type="text"
+        placeholder="Enter City Name"
+        style="padding: 5px; border-radius: 10px"
+      > <div style="padding: 8px;"></div></input>
+
+      <button style="height: 20px; border-radius: 10px; cursor: pointer">
+        Search
+      </button>
+    </div>
+
+    <div style="padding: 1.5rem 4rem; background-color: aquamarine " id="WeatherDetailsCard">
+      <h1 id="Location">Bangalore</h1>
+      <h4 id="date">Date</h4>
+      <div id="temperature" style="font-size: 70px">38</div>
+      <div style="display: flex">
+        <div id="humidity" style="font-size: 40px; padding-top: 2rem">38</div>
+        <div id="windSpeed" style="font-size: 40px; padding: 2rem">38</div>
+      </div>
+    </div>
+
+    <div id="forcast" style="display: flex; overflow-x: hidden;"></div>
+  </body>
+
+  <script>
+    async function fetchData() {
+      const url =
+        "https://api.openweathermap.org/data/2.5/forecast?lat=12.971599&lon=77.594566&appid=6d53c4c6c53ccfe9f2c057bede7deaeb";
+
+      try {
+        const res = await fetch(url);
+        if (!res.ok) {
+          throw new Error("Response Status: ", `${res.status}`);
+        }
+
+        const json = await res.json();
+        const weatherdata = json.list[0];
+
+        const timestamp = weatherdata.dt;
+        console.log(timestamp);
+
+        const date = new Date(timestamp * 1000);
+        console.log(date);
+
+        const formattedDate = date.toLocaleDateString();
+        const formattedTime = date.toLocaleTimeString();
+
+        document.getElementById(
+          "date"
+        ).innerText = `${formattedDate} ${formattedTime}`;
+
+        document.getElementById("temperature").innerHTML = `${(
+          weatherdata.main.temp - 273.15
+        ).toFixed(2)}\u00B0C`;
+
+        document.getElementById(
+          "humidity"
+        ).innerHTML = `${weatherdata.main.humidity}%`;
+
+        document.getElementById(
+          "windSpeed"
+        ).innerHTML = `${weatherdata.wind.speed} m/s`;
+
+        fetchPrediction(json)
+      } catch (error) {
+        console.log(error.message);
+      }
+    }
+
+    function fetchPrediction(json){
+
+        const forcast=document.getElementById("forcast");
+
+        for (let index = 1; index < 39; index++) {
+            
+            const box=document.createElement('div');
+            box.className="forcast-item";
+            
+            const loc=document.getElementById("Location").innerText;
+            const location=document.createElement('h3');
+            location.textContent=loc;
+
+            const date=document.createElement('h6');
+            const inputData=new Date(json.list[index].dt*1000);
+            const formattedDate = inputData.toLocaleDateString();
+            const formattedTime = inputData.toLocaleTimeString();
+            date.textContent= `${formattedDate} ${formattedTime}`;
+
+            const temp=document.createElement('div');
+            temp.textContent=`${(json.list[index].main.temp - 273.15).toFixed(2)}\u00B0C`;
+            temp.style.fontSize='2rem'
+
+            const humAndWind=document.createElement('div');
+            humAndWind.style.display="flex";
+
+            const humidity=document.createElement('div');
+            humidity.textContent=`${json.list[index].main.humidity}%`
+            humidity.className="humidity"
+
+            const windspeed=document.createElement('div');
+            windspeed.textContent=`${json.list[index].wind.speed} m/s`;
+            windspeed.className="windspeed"
+
+            humAndWind.appendChild(humidity);
+            humAndWind.appendChild(windspeed);
+
+            box.appendChild(location);
+            box.appendChild(date);
+            box.appendChild(temp);
+            box.appendChild(humAndWind);
+
+
+            forcast.appendChild(box);            
+        }
+    }
+    fetchData();
+    fetchPrediction()
+  </script>
+</html>
+
+<!-- cityName fetch is pending -->
+<!-- 17bddfea3395ea6a61d8148c7d029710 -->
+
+<!-- https://api.openweathermap.org/data/2.5/forecast?lat=12.971599&lon=77.594566&appid=6d53c4c6c53ccfe9f2c057bede7deaeb -->
