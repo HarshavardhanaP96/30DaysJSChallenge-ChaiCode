@@ -1,5 +1,6 @@
 //Activity-1
 //Task-1
+//buble sort
 let arr1 = [999, 498, 321, 260, 97, 11];
 
 for (let i = 0; i < arr1.length; i++) {
@@ -15,6 +16,7 @@ for (let i = 0; i < arr1.length; i++) {
 console.log(arr1);
 
 //Task-2
+//selection sort
 
 for (let i = 0; i < arr1.length; i++) {
   let small = i;
@@ -72,6 +74,7 @@ console.log(binarySearch(arr1, 321));
 
 //Activity-3
 //Task-6
+//character occurence count
 let alpha = new Array(26).fill(0);
 
 let s =
@@ -82,13 +85,16 @@ for (let i = 0; i < s.length; i++) {
   alpha[element.charCodeAt(0) - 97]++;
 }
 
-console.log("counts are as below");
+console.log("\ncounts are as below");
 
 for (let i = 0; i < alpha.length; i++) {
+  if (alpha[i] == 0) {
+    continue;
+  }
   console.log(String.fromCharCode(i + 97), " : ", alpha[i]);
 }
 
-console.log("end of count");
+console.log("end of count\n");
 
 //task-7
 
