@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Real-Time Chat</title>
+
+    <style>
+      #messages {
+        height: 300px;
+        overflow-y: auto;
+        border: 1px solid #ccc;
+        padding: 10px;
+        margin-bottom: 10px;
+      }
+      .message {
+        margin-bottom: 10px;
+      }
+      .sent {
+        text-align: right;
+        color: green;
+      }
+      .received {
+        text-align: left;
+        color: blue;
+      }
+      #typing-indicator {
+        font-style: italic;
+        color: gray;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="messages"></div>
+    <textarea id="message-input" placeholder="Type a message..."></textarea>
+    <button id="send-button">Send</button>
+    <div id="typing-indicator"></div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="client.js"></script>
+  </body>
+</html>

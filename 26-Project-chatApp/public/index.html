@@ -12,13 +12,21 @@
         color: white;
       }
 
-      .msg-sent {
+      .msg {
         width: 70%;
-        float: right;
-        background-color: darkkhaki;
         margin: 5px 0;
         padding: 5px;
         border-radius: 5px;
+      }
+
+      .sent {
+        background-color: darkkhaki;
+        align-self: flex-end;
+      }
+
+      .received {
+        background-color: white;
+        align-self: flex-start;
       }
     </style>
   </head>
@@ -55,9 +63,12 @@
         id="conversationBar"
         style="
           height: 100%;
-          background-color: darkolivegreen;
+          background-color: rgb(94, 166, 179);
           overflow-y: scroll;
           padding: 5px;
+          display: flex;
+          flex-direction: column;
+          justify-content: end;
         "
       ></div>
 
@@ -90,7 +101,6 @@
         </button>
       </div>
     </div>
-
-    <script src="index.js"></script>
+    <script src="chat.js"></script>
   </body>
 </html>

@@ -1,0 +1,19 @@
+{
+  "name": "26-project-chatapp",
+  "version": "1.0.0",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node server/server.js",
+    "websocket": "node server/index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "express": "^4.19.2",
+    "websocket": "^1.0.35",
+    "ws": "^8.18.0"
+  }
+}
